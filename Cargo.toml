@@ -1,0 +1,10 @@
+[package]
+name = "cerulean_box"
+version = "0.1.0"
+authors = ["Wesley Ellis <tahnok@gmail.com>"]
+
+[dependencies]
+f3 = "0.6.1"
+cortex-m = "0.5.0"
+cortex-m-rt = "0.5.0"
+panic-semihosting = "0.3.0"
