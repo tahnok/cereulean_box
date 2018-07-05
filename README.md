@@ -25,4 +25,6 @@ The goal of this project is to make a bluebox using an stm32 f3 discovery in rus
 
 # Running
 
-hahahahahah no not yet
+In one terminal run `openocd -f interface/stlink-v2-1.cfg -f target/stm32f3x.cfg`
+
+In another, `cargo run`. This drops you into a gdb session for now. Type `continue`
