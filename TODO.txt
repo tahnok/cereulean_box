@@ -1,0 +1,10 @@
+ - what is rt?
+ - how do I flash binary without gdb
+ - how to I generate a square wave at a given frequency
+   - is there a crate?
+   - what is the math?
+     - toggle at 1 / ( 2 * freq)
+     - 1 / (2 * 2600) = 192ms
+   - seems like there is a 2 DAC for triangle wave generation
+ - how do I generate 2 waves at the same time?
+

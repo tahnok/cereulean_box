@@ -13,7 +13,6 @@ extern crate panic_semihosting;
 use f3::hal::delay::Delay;
 use f3::hal::prelude::*;
 use f3::hal::stm32f30x;
-use f3::led::Led;
 use rt::ExceptionFrame;
 
 entry!(main);
@@ -24,25 +23,28 @@ fn main() -> ! {
 
     let mut flash = dp.FLASH.constrain();
     let mut rcc = dp.RCC.constrain();
-    let mut gpioe = dp.GPIOE.split(&mut rcc.ahb);
+    let mut gpioa = dp.GPIOA.split(&mut rcc.ahb);
 
     // clock configuration using the default settings (all clocks run at 8 MHz)
     let clocks = rcc.cfgr.freeze(&mut flash.acr);
-    // TRY this alternate clock configuration (all clocks run at 16 MHz)
-    // let clocks = rcc.cfgr.sysclk(16.mhz()).freeze(&mut flash.acr);
 
-    let mut led: Led = gpioe
-        .pe9
-        .into_push_pull_output(&mut gpioe.moder, &mut gpioe.otyper)
-        .into();
+    let mut output = gpioa
+        .pa0
+        .into_push_pull_output(&mut gpioa.moder, &mut gpioa.otyper);
+
     let mut delay = Delay::new(cp.SYST, clocks);
 
+    let ms = delay_ms_for_freq(2600);
     loop {
-        led.on();
-        delay.delay_ms(1_000_u16);
-        led.off();
-        delay.delay_ms(1_000_u16);
+        output.set_low();
+        delay.delay_ms(ms);
+        output.set_high();
+        delay.delay_ms(ms);
     }
+}
+
+fn delay_ms_for_freq(frequency: u16) -> u16 {
+    1 / (2 * frequency) * 1000
 }
 
 exception!(HardFault, hard_fault);
