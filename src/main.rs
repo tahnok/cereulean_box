@@ -34,17 +34,17 @@ fn main() -> ! {
 
     let mut delay = Delay::new(cp.SYST, clocks);
 
-    let ms = delay_ms_for_freq(2600);
+    let us = delay_us_for_freq(2600);
     loop {
         output.set_low();
-        delay.delay_ms(ms);
+        delay.delay_us(us);
         output.set_high();
-        delay.delay_ms(ms);
+        delay.delay_us(us);
     }
 }
 
-fn delay_ms_for_freq(frequency: u16) -> u16 {
-    1 / (2 * frequency) * 1000
+fn delay_us_for_freq(frequency: u32) -> u32 {
+    1 / (2 * frequency) * 1_000_000
 }
 
 exception!(HardFault, hard_fault);
