@@ -18,6 +18,7 @@ The goal of this project is to make a bluebox using an stm32 f3 discovery in rus
 ??? need to try this on a fresh machine. To steal from [cortex_m_quickstart](https://docs.rs/cortex-m-quickstart/0.3.1/cortex_m_quickstart/)
 
  - Nightly Rust toolchain newer than nightly-2018-04-08: rustup default nightly
+ - Rust target: rustup target add thumbv7em-none-eabihf
  - ARM toolchain: sudo apt-get install gcc-arm-none-eabi (on Ubuntu)
  - GDB: sudo apt-get install gdb-arm-none-eabi (on Ubuntu)
  - OpenOCD: sudo apt-get install OpenOCD (on Ubuntu)
